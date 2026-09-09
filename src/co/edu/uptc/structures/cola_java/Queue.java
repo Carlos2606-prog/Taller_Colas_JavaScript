@@ -1,4 +1,4 @@
-package co.edu.uptc.structures;
+package co.edu.uptc.structures.cola_java;
 
 public class Queue<E> {
 

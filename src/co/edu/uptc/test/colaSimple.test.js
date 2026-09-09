@@ -1,4 +1,4 @@
-const { crearColaSimple } = require("../src/colaSimple");
+const {crearColaSimple} = require("../structures/cola_js/colaSimple");
 
 // Test 1: cola vacía al inicio
 const cola = crearColaSimple();
