@@ -7,6 +7,17 @@ Para poder ejecutar archivos js (JavaScript) en VisualStudio tendremos que:
 2. Ve a la pestaña de **Extensiones** en el panel lateral izquierdo (`Ctrl + Shift + X`).
 3. Busca **Code Runner** e instálala.
 
+ **Alternativa sin extensión:** si no quieres instalar Code Runner, puedes ejecutar
+ cualquier archivo `.js` directamente desde la terminal integrada de VS Code
+ (ábrela con `` Ctrl + ` ``), siempre que tengas Node.js instalado (ver paso 2):
+ ```bash
+ node ruta/al/archivo.js
+ ```
+ Por ejemplo, para correr los tests de este taller:
+ ```bash
+ node src/co/edu/uptc/test/simpleQueue.test.js
+ ```
+
 ## 2. Instalar Node.js
 1. Ve al sitio oficial de descargas: [Node.js Downloads](https://nodejs.org/en/download).
 2. Descarga el instalador correspondiente a tu sistema operativo (para Windows de 64 bits, selecciona **Windows Installer (.msi) x64**).
@@ -24,12 +35,12 @@ A diferencia de Java, en JavaScript **no es necesario ni existe la declaración 
   * Para exportar una función o estructura:
 
     ```javascript
-    module.exports = { crearColaSimple };
+    module.exports = { createSimpleQueue };
     ```
   * Para importarla en otro archivo, basta con indicar la ruta relativa:
 
     ```javascript
-    const { crearColaSimple } = require("../structures/cola_js/colaSimple");
+    const { createSimpleQueue } = require("../structures/cola_js/simpleQueue");
     ```
 
  
@@ -38,18 +49,18 @@ A diferencia de Java, en JavaScript **no es necesario ni existe la declaración 
 En **Java** es obligatorio envolver cualquier estructura dentro de una clase (`public class Queue`). En **JavaScript** existen dos formas principales de lograr este comportamiento:
 
 ### **A. Funciones Constructoras (Factory Functions)**
-No se utiliza la palabra reservada `class`. Se define una función principal (`crearColaSimple`) que encapsula la lógica interna y retorna un objeto con las funciones expuestas al usuario:
+No se utiliza la palabra reservada `class`. Se define una función principal (`createSimpleQueue`) que encapsula la lógica interna y retorna un objeto con las funciones expuestas al usuario:
 ```javascript
-function crearColaSimple() {
+function createSimpleQueue() {
     // Variables locales (equivalente a atributos)
-    let frente = null;
-    let ultimo = null;
+    let front = null;
+    let rear = null;
 
     // Métodos de la estructura
-    function push(valor) { /* ... */ }
-    function pull(valor) { /* ... */ }
-    function peek(valor) { /* ... */ }
-    function isEmpty(valor) { /* ... */ }
+    function push(value) { /* ... */ }
+    function pull() { /* ... */ }
+    function peak() { /* ... */ }
+    function isEmpty() { /* ... */ }
 
     // Retorna solo la interfaz pública
     return { push, pull, peak, isEmpty };
@@ -65,16 +76,16 @@ function crearColaSimple() {
 ### Guía de apoyo: [Factory functions en JavaScript](https://www.webtutoriales.com/articulos/2025/05/18/factory-functions-javascript/)
 ### **B. Sintaxis de Clases**
 ```javascript
-class ColaSimple{
+class SimpleQueue{
   constructor(){/* ... */ }
   // Métodos de la estructura
-  push(valor) { /* ... */ }
-  pull(valor) { /* ... */ }
-  peek(valor) { /* ... */ }
-  isEmpty(valor) { /* ... */ }
+  push(value) { /* ... */ }
+  pull() { /* ... */ }
+  peak() { /* ... */ }
+  isEmpty() { /* ... */ }
 }
 // Instanciación (requiere obligatoriamente la palabra clave 'new')
-const miCola = new ColaSimple();
+const myQueue = new SimpleQueue();
 ```
 #### Ventajas
 * **Sintaxis familiar**: Es muy intuitiva si ya se viene manejando un lenguaje orientado a objetos como Java.
